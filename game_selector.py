@@ -1,7 +1,9 @@
 import rps_game
+import userGreeting
 
 # Main program menu.
 def startGameSelection():
+    userGreeting.startGreeting()
     print('MAIN MENU'.center(30, '*'))
     print('[1] Play Rock, Paper, and Scissors')
     print('[2] Snack and Ladders'   )
