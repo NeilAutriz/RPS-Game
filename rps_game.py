@@ -1,9 +1,15 @@
 import random
+import userGreeting
 
 gameChoices = ['🪨', '📄', '✂️']
 gameIndex = [0, 1, 2]
 
 def playGame():
+    userName = userGreeting.arguments.name
+    if(userName == 'None'):
+        userName = 'User'
+    else:
+        userName = userGreeting.arguments.name
     game_records = {
         "matchCount": 0,
         "winCount": 0,
@@ -11,12 +17,12 @@ def playGame():
         "drawCount": 0
     }
     while True:
-        showMainMenu()
+        showMainMenu(userName)
         userChoice = int(getUserInput())
         if userChoice > 2 or userChoice < 0:
             print('Enter a valid user choice😔')
         elif userChoice == 2:
-            showMatchHistory(game_records)
+            showMatchHistory(game_records, userName)
         elif userChoice == 0:
             print('Thank you for using the program! 💻')
             break
@@ -25,7 +31,7 @@ def playGame():
                 showGameChoices()
                 userSelection = int(getUserInput())
                 if userSelection == 3:
-                    print('Exiting the game.')
+                    print('Exiting the game❌')
                     break
                 else:
                     userSelection = convertUserSelection(userSelection)
@@ -33,12 +39,12 @@ def playGame():
                     gameLogic(userSelection, computerSelection, game_records)
 
 # Show match history.
-def showMatchHistory(game_records):
-    print('GAME HISTORY'.center(30, '*'))
-    print('🎮Total Matches Count: ', game_records["matchCount"])
-    print('🏆Win Count: ', game_records["winCount"])
-    print('❌ Lose Count: ', game_records["loseCount"])
-    print('👌 Draw Count: ', game_records["drawCount"])
+def showMatchHistory(game_records, userName):
+    print(f"{userName} Game History".center(30, '*'))
+    print(f"🎮{userName}Total Matches Count: ", game_records["matchCount"])
+    print(f"🏆{userName} Win Count: ", game_records["winCount"])
+    print(f"{userName}❌ Lose Count: ", game_records["loseCount"])
+    print(f"{userName}👌 Draw Count: ", game_records["drawCount"])
 
 # Convert user selection.
 def convertUserSelection(userSelection):
@@ -53,8 +59,9 @@ def getComputerSelection():
     return computerSelection
 
 # Main program menu.
-def showMainMenu():
-    print('MAIN MENU'.center(30, '*'))
+def showMainMenu(userName):
+    print(f"🎮{userName}, welcome to the RPS GAME🎮")
+    print('RPS GAME'.center(30, '*'))
     print('[1] Play Rock, Paper, and Scissors')
     print('[2] Show Match Results')
     print('[0] Exit the Program')

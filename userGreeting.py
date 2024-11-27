@@ -26,7 +26,7 @@ arguments = parser.parse_args()
 
 def startGreeting():
     if(arguments.name == None or arguments.language == None):
-        print(f"Hello there!😁")
+        print(f"Hello there, User!👌😎")
     else:
         greetUser(arguments.name, arguments.language)
 
